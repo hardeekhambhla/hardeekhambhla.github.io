@@ -1,10 +1,12 @@
-
 title: Hardee Khambhla
 email: khambhlahardee@gmail.com
 author: hardeekhambhla
 
 
-copyright: "Pages from 20s | 2022-{currentYear} |{author}"
+copyright: |
+  © Pages from 20s  
+  2022-{{ 'now' | date: '%Y' }}  
+  {{ author }}
 
 description: >- # this means to ignore newlines until "baseurl:"
   hi, I'm Hardee. I enjoy listening to other people's stories and sharing my own. 
