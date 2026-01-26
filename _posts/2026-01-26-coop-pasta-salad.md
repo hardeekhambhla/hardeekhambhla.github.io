@@ -5,7 +5,7 @@ subtitle: How food quietly takes us back in time.
 author: Hardee Khambhla
 categories: food travel
 banner:
-  image: https://github.com/hardeekhambhla/blog-assets/blob/main/brienz.jpg
+  image: //raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/brienz.jpg
 tags: cooking switzerland food memories travel
 top: 1
 sidebar: []
@@ -19,10 +19,9 @@ I have been thinking about it for just about a year. I first had this salad at t
 
 It wasn't a fancy meal, but it was perfect.
 
-![Me having the salad at Mount Rigi] 
-https://github.com/hardeekhambhla/blog-assets/blob/main/rigi%20salad.jpg
+//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/rigi%20salad.jpg
 
-![Me having the salad in Lauterbrunnen] https://github.com/hardeekhambhla/blog-assets/blob/main/lauterbrunnen%20salad.jpg
+//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/lauterbrunnen%20salad.jpg
 
 I have wanted to recreate it ever since, but it was tough sourcing the same ingredients, as they are not readily available in India. The specific greens, fresh mozzarella shaped into little balls seemed a bit too out of reach.
 
@@ -32,8 +31,7 @@ I didn't want to cut corners. I made pesto at home. I made fresh mozzarella from
 
 Mixing it all together and taking the first bite took me straight to food heaven.
 
-![The final recreated pesto pasta salad]
-https://github.com/hardeekhambhla/blog-assets/blob/main/recreated%20pesto%20pasta%20salad.jpg
+//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/recreated%20pesto%20pasta%20salad.jpg
 
 Some memories live in photographs.  
 Some in journals.  
