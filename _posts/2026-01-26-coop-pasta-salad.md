@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Pasta Salad, A Mountain, And A Year Of Longing
+title: A Pasta Salad, A Mountain, And A Year Of Longing
 subtitle: How food quietly takes us back in time.
 author: Hardee Khambhla
 categories: food travel
 banner:
-  image: //raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/brienz.jpg
+  image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/brienz.jpg
 tags: cooking switzerland food memories travel
 top: 1
 sidebar: []
@@ -19,9 +19,15 @@ I have been thinking about it for just about a year. I first had this salad at t
 
 It wasn't a fancy meal, but it was perfect.
 
-//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/rigi%20salad.jpg
+<figure>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg" alt="Salad at the top of Mount Rigi">
+  <figcaption>Salad at the top of Mount Rigi</figcaption>
+</figure>
 
-//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/lauterbrunnen%20salad.jpg
+<figure>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg" alt="Salad as Lunch in Lauterbrunnen">
+  <figcaption>Salad as Lunch in Lauterbrunnen</figcaption>
+</figure>
 
 I have wanted to recreate it ever since, but it was tough sourcing the same ingredients, as they are not readily available in India. The specific greens, fresh mozzarella shaped into little balls seemed a bit too out of reach.
 
@@ -31,7 +37,10 @@ I didn't want to cut corners. I made pesto at home. I made fresh mozzarella from
 
 Mixing it all together and taking the first bite took me straight to food heaven.
 
-//raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/recreated%20pesto%20pasta%20salad.jpg
+<figure>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg" alt="My homemade recreation of it">
+  <figcaption>My homemade recreation of it :)</figcaption>
+</figure>
 
 Some memories live in photographs.  
 Some in journals.  
