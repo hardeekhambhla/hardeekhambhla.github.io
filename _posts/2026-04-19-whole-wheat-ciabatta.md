@@ -18,9 +18,7 @@ Ciabatta is Italian for *slipper*. Named for its flat, slightly untidy shape - a
 I made this recipe with whole wheat flour, which is not traditional. Real ciabatta is white, light and airy. But I wanted to see if I could capture that same spirit with a denser, more wholesome flour. The result was marginally different in texture, but the flavor was deeper - and this is how I make it now.
 
 <figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/small%20sandwich.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/small%20sandwich.jpg" alt="Small round ciabatta made into a sandwich">
-	</a>
+	<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/small%20sandwich.jpg" alt="Small round ciabatta made into a sandwich">
 	<figcaption>Small round loaf — perfect for a handheld sandwich.</figcaption>
 </figure>
 
@@ -58,9 +56,7 @@ I made this recipe with whole wheat flour, which is not traditional. Real ciabat
 - Let cool 5–10 minutes before slicing.
 
 <figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cut%20open%20rectangle%20ciabatta.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cut%20open%20rectangle%20ciabatta.jpg" alt="Ciabatta cut open, showing crumb">
-	</a>
+	<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cut%20open%20rectangle%20ciabatta.jpg" alt="Ciabatta cut open, showing crumb">
 	<figcaption>Cut open - warm crumb with open pockets.</figcaption>
 </figure>
 
@@ -77,9 +73,7 @@ The bread smelled incredible. That deep, warm, wheaty smell that fills the whole
 
 <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
 	<figure style="max-width:320px; width:48%; text-align:center;">
-		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg">
-			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg" alt="Ciabatta sandwich with guacamole">
-		</a>
+		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg" alt="Ciabatta sandwich with guacamole">
 		<figcaption>Ciabatta guac sandwich.</figcaption>
 	</figure>
 </div>
