@@ -6,8 +6,10 @@ author: Hardee Khambhla
 categories: food travel
 banner:
   image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/brienz.jpg
+image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/brienz.jpg
 tags: cooking switzerland food memories travel
 top: 1
+toc: true
 sidebar: []
 ---
 
@@ -20,12 +22,16 @@ I have been thinking about it for just about a year. I first had this salad at t
 It wasn't a fancy meal, but it was perfect.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg" alt="Salad at the top of Mount Rigi">
+  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg">
+    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg" alt="Salad at the top of Mount Rigi">
+  </a>
   <figcaption>Salad at the top of Mount Rigi</figcaption>
 </figure>
 
 <figure>
-  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg" alt="Salad as Lunch in Lauterbrunnen">
+  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg">
+    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg" alt="Salad as Lunch in Lauterbrunnen">
+  </a>
   <figcaption>Salad as Lunch in Lauterbrunnen</figcaption>
 </figure>
 
@@ -38,7 +44,9 @@ I didn't want to cut corners. I made pesto at home. I made fresh mozzarella from
 Mixing it all together and taking the first bite took me straight to food heaven.
 
 <figure>
-  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg" alt="My homemade recreation of it">
+  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg">
+    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg" alt="My homemade recreation of it">
+  </a>
   <figcaption>My homemade recreation of it :)</figcaption>
 </figure>
 
