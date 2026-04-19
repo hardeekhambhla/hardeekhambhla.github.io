@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Whole Wheat Ciabatta
+title: Whole Wheat Ciabatta Bread
 subtitle: Five ingredients, a little patience, and really good bread.
 author: Hardee Khambhla
 categories: food
@@ -10,58 +10,81 @@ toc: true
 sidebar: []
 ---
 
-There is something almost defiant about making bread at home.
+Ciabatta is Italian for *slipper*. Named for its flat, slightly untidy shape - a bread that looks like it just woke up. It's rustic, it's simple, and it's all about the texture. The ideal ciabatta has a crisp, golden crust and an interior that's soft, chewy. It's the kind of bread that makes you want to tear it apart with your hands, to savor each bite.
 
-Bread doesn't care about your schedule. It has its own timeline, its own pace. And if you try to rush it, it will simply refuse to cooperate.
+I made this recipe with whole wheat flour, which is not traditional. Real ciabatta is white, light and airy. But I wanted to see if I could capture that same spirit with a denser, more wholesome flour. The result was marginally different in texture, but the flavor was deeper - and this is how I make it now.
 
-I learned this the first time I made ciabatta.
+<figure>
+	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg">
+		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg" alt="Side view of whole wheat ciabatta">
+	</a>
+	<figcaption>Perfect for a small snack (side view)</figcaption>
+</figure>
 
-Ciabatta is Italian for *slipper*. Named for its flat, slightly untidy shape — a bread that looks like it just woke up. I like that about it. It is not trying to be elegant. It just wants to be good.
+## Recipe Card
 
-I made this with whole wheat flour, which is not traditional. Real ciabatta is white, airy, full of the kind of holes that make bread lovers weak in the knees. Mine was a little denser, a little earthier. But it was mine.
+- **Yield:** 4 small ciabattas
+- **Prep + Rise:** ~3 hours (including rests and folds)
+- **Bake:** 20–25 minutes
 
-## What you need
+**Ingredients**
 
 - 1 tsp active dry yeast
-- 1 cup water
-- 2 cups whole wheat flour
+- 1 cup (240 ml) lukewarm water
+- 2 cups (about 240 g) whole wheat flour
 - 1 tsp salt
 - 1 tsp olive oil
 
-## The process
+**Equipment**
 
-Heat the water until it's lukewarm — not hot, not cold. Just warm enough that it feels like nothing. Dissolve the yeast in it and let it sit for at least 5 minutes. You'll know it's working when it starts to foam at the top. That foam is yeast waking up, and it is oddly satisfying to watch.
+- Mixing bowl
+- Parchment paper
+- Air fryer (or oven) with a rack
 
-Add the olive oil, then the flour. Mix until it comes together into what bakers call a *shaggy dough* — rough, sticky, not pretty. Add the salt last. The dough should feel slightly wet. Wetter than you think is right. That's okay. That's the point.
+**Steps**
 
-Then do nothing. Let it rest for at least 30 minutes.
+- Dissolve the yeast in lukewarm water and let sit 5 minutes, until foamy.
+- Add the olive oil, then the flour; mix until a shaggy, slightly wet dough forms. Add the salt last.
+- Cover and rest the dough for 30 minutes.
+- Every 30 minutes, perform four folds (one from each side into the centre). Repeat at least 3 times.
+- After the final rise, turn the dough onto a floured surface and divide into 4 roughly equal pieces. Shape each into a loose rectangle and transfer to a parchment-lined tray. Rest 40 minutes.
+- Preheat the air fryer to 200°C. (If using an oven, preheat to 200°C / 400°F.)
+- Optional: pour a thin layer of water into the bottom of the air fryer to create steam for a crisper crust.
+- Bake for 20 minutes, until tops are golden and crust is set. Tap the bottom — it should sound hollow.
+- If the bottoms need more crisping, flip and bake an additional 5 minutes.
+- Let cool 5–10 minutes before slicing.
 
-This is the part that feels wrong, especially if you're used to aggressively kneading dough. But ciabatta doesn't want to be kneaded. It wants to be *folded*.
+<figure>
+	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cut%20open%20rectangle%20ciabatta.jpg">
+		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cut%20open%20rectangle%20ciabatta.jpg" alt="Ciabatta cut open, showing crumb">
+	</a>
+	<figcaption>Cut open - warm crumb with open pockets.</figcaption>
+</figure>
 
-## The folding
+**Tips**
 
-Every 30 minutes, come back to the bowl. Take one side of the dough and fold it into the center. Then the opposite side. Then the other two. Four folds, from four directions — then leave it alone again.
-
-Do this at least 3 times.
-
-It sounds like almost nothing. But each fold is building structure — layers of gluten forming slowly, the dough becoming smoother and more elastic each time you return to it. It's a process that rewards patience over force. There's something meditative about it. A little check-in, a little care, then back to your day.
-
-## Shaping and baking
-
-After the last fold, flour a clean surface and turn the dough out onto it. Cut it into 4 roughly equal portions and shape each one into a loose rectangle. Don't overwork it — rough is fine, rough is honest. Transfer them to a baking tray lined with parchment paper and let them rest for another 40 minutes.
-
-Preheat your oven to 200°C.
-
-Bake for 20 minutes, until the tops are golden and the crust has set. Tap the bottom of one — if it sounds hollow, it's done.
-
-Let them cool for at least 5–10 minutes before cutting. I know. It's hard.
+- Do not knead the dough; folding builds structure without overworking it.
+- Handle gently to avoid tearing the dough during folds and shaping.
+- Wait a few minutes before slicing so the crumb sets and doesn't become gummy.
+- Serve with olive oil and a pinch of salt.
 
 ## Worth the wait
 
-The bread came out imperfect — a little uneven, not quite as holey as the ciabatta in Italian bakery windows. But it smelled incredible. That deep, warm, wheaty smell that fills the whole kitchen and makes everything feel slow and good.
+The bread smelled incredible. That deep, warm, wheaty smell that fills the whole kitchen and makes everything feel good.
 
-I ate a piece with just olive oil and a pinch of salt.
+<div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
+	<figure style="max-width:320px; width:48%; text-align:center;">
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/small%20sandwich.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/small%20sandwich.jpg" alt="Small round ciabatta made into a sandwich">
+		</a>
+		<figcaption>Small round loaf - perfect for a handheld sandwich.</figcaption>
+	</figure>
+	<figure style="max-width:320px; width:48%; text-align:center;">
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg" alt="Ciabatta sandwich with guacamole">
+		</a>
+		<figcaption>Ciabatta guac sandwich.</figcaption>
+	</figure>
+</div>
 
-It was exactly right.
-
-Some things don't need to be perfect. They just need to be made with attention — and a little willingness to wait.
+I recommend eating a piece with just olive oil and a pinch of salt.
