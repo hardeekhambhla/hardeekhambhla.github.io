@@ -6,7 +6,7 @@ author: Hardee Khambhla
 categories: food
 tags: baking bread ciabatta wholewheat recipe homemade
 banner:
-	image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg
+  image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg
 image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg
 top: 1
 toc: true
@@ -71,11 +71,9 @@ I made this recipe with whole wheat flour, which is not traditional. Real ciabat
 
 The bread smelled incredible. That deep, warm, wheaty smell that fills the whole kitchen and makes everything feel good.
 
-<div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:12px;">
-	<figure style="max-width:320px; width:48%; text-align:center;">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg" alt="Ciabatta sandwich with guacamole">
-		<figcaption>Ciabatta guac sandwich.</figcaption>
-	</figure>
-</div>
+<figure>
+	<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/guac%20sandwich.jpg" alt="Ciabatta sandwich with guacamole">
+	<figcaption>Ciabatta guac sandwich.</figcaption>
+</figure>
 
 I recommend eating a piece with just olive oil and a pinch of salt.
