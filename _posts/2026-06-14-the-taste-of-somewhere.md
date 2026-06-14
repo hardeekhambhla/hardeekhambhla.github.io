@@ -6,7 +6,7 @@ author: Hardee Khambhla
 categories: food travel
 tags: food memories travel
 banner:
-	image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg
+  image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg
 image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg
 top: 1
 toc: true
