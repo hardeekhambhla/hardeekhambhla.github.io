@@ -1,13 +1,16 @@
 ---
 layout: post
-title: "The Taste of Somewhere"
-subtitle: "Why Every Trip Leaves Me with a New Favorite Food"
-date: 2026-06-14 09:00:00 +0000
-categories: personal
-tags: [food, travel, memories]
+title: The Taste of Somewhere
+subtitle: Why Every Trip Leaves Me with a New Favorite Food
+author: Hardee Khambhla
+categories: food travel
+tags: food memories travel
 banner:
 	image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg
 image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg
+top: 1
+toc: true
+sidebar: []
 ---
 
 I've realized I carry memories in food. Every place I've been, I bring back one thing I tasted there for the first time that somehow becomes *that* place forever. Stroopwafels and shrimp salad from Amsterdam. Tzatziki from Brugge. Coop pesto pasta salad from Switzerland. Cinnamon in coffee from Portugal. Bhagsu cake, first flush tea, and rhododendron jam from Himachal. Roselle tea from the Andamans.
