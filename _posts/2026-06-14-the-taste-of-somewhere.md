@@ -22,19 +22,38 @@ I don't just remember where I went - I remember how it tasted. I think that's a 
 ---
 
 <figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg" alt="Bhagsu cake from Himachal">
-	</a>
-</figure>
+---
 
-<figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cinnamon%20coffee.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cinnamon%20coffee.jpg" alt="Cinnamon coffee as in Portugal">
-	</a>
-</figure>
+<style>
+	.photo-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin: 1.25rem 0; }
+	.photo-grid figure { margin: 0; }
+	.photo-grid img { width: 100%; height: auto; display: block; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+	@media (max-width: 640px) { .photo-grid { grid-template-columns: 1fr; } }
+</style>
 
-<figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/tzatziki.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/tzatziki.jpg" alt="Tzatziki and Bread in Brugge">
-	</a>
-</figure>
+<div class="photo-grid">
+	<figure>
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg" alt="Bhagsu cake from Himachal">
+		</a>
+	</figure>
+
+	<figure>
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cinnamon%20coffee.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/cinnamon%20coffee.jpg" alt="Cinnamon coffee from Portugal">
+		</a>
+	</figure>
+
+	<figure>
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/tzatziki.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/tzatziki.jpg" alt="Tzatziki from Brugge">
+		</a>
+	</figure>
+
+	<figure>
+		<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/roselle%20tea.jpg">
+			<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/roselle%20tea.jpg" alt="Roselle tea from the Andamans">
+		</a>
+	</figure>
+
+</div>
