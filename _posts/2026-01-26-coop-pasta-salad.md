@@ -22,16 +22,12 @@ I have been thinking about it for just about a year. I first had this salad at t
 It wasn't a fancy meal, but it was perfect.
 
 <figure>
-  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg">
-    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg" alt="Salad at the top of Mount Rigi">
-  </a>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/rigi%20salad.jpg" alt="Salad at the top of Mount Rigi">
   <figcaption>Salad at the top of Mount Rigi</figcaption>
 </figure>
 
 <figure>
-  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg">
-    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg" alt="Salad as Lunch in Lauterbrunnen">
-  </a>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/lauterbrunnen%20salad.jpg" alt="Salad as Lunch in Lauterbrunnen">
   <figcaption>Salad as Lunch in Lauterbrunnen</figcaption>
 </figure>
 
@@ -44,9 +40,7 @@ I didn't want to cut corners. I made pesto at home. I made fresh mozzarella from
 Mixing it all together and taking the first bite took me straight to food heaven.
 
 <figure>
-  <a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg">
-    <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg" alt="My homemade recreation of it">
-  </a>
+  <img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/recreated%20pesto%20pasta%20salad.jpg" alt="My homemade recreation of it">
   <figcaption>My homemade recreation of it :)</figcaption>
 </figure>
 
