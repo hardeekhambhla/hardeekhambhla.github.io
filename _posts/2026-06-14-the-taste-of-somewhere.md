@@ -18,8 +18,8 @@ I've realized I carry memories in food. Every place I've been, I bring back one 
 I don't just remember where I went - I remember how it tasted. I think that's a reflection of who I am. I experience places through small, ordinary moments, and it's those little flavors that stay with me long after the trip is over, becoming tiny edible souvenirs of a memory.
 
 <figure>
-	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg">
-		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cake.jpg" alt="Bhagsu cake from Himachal">
+	<a class="photo-swipe" href="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cakee.jpg">
+		<img src="https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/bhagsu%20cakee.jpg" alt="Bhagsu cake from Himachal">
 	</a>
 	<figcaption>Bhagsu cake from Himachal</figcaption>
 </figure>
