@@ -1,8 +1,13 @@
+import sys
 from html import escape
 from pathlib import Path
 from typing import Dict, List
 
-from hashnode_utils import parse_front_matter, prepare_content
+repo_root = Path(__file__).resolve().parent.parent
+if str(repo_root) not in sys.path:
+    sys.path.insert(0, str(repo_root))
+
+from scripts.hashnode_utils import parse_front_matter, prepare_content
 
 
 def _build_export(payload: Dict[str, object], slug: str) -> Dict[str, str]:

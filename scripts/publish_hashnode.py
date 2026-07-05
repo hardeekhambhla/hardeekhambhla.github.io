@@ -2,12 +2,17 @@ import hashlib
 import json
 import os
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 from typing import Any, Dict, List
 
-from hashnode_utils import load_state, parse_front_matter, prepare_content, save_state
-from generate_platform_content import export_platform_versions
+repo_root = Path(__file__).resolve().parent.parent
+if str(repo_root) not in sys.path:
+    sys.path.insert(0, str(repo_root))
+
+from scripts.hashnode_utils import load_state, parse_front_matter, prepare_content, save_state
+from scripts.generate_platform_content import export_platform_versions
 
 
 def build_payload(post_path: Path, state: Dict[str, Any]) -> Dict[str, Any]:
@@ -38,6 +43,15 @@ def build_payload(post_path: Path, state: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 
+def build_request_headers(token: str) -> Dict[str, str]:
+    return {
+        "Authorization": token,
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "User-Agent": "github-actions-hashnode-publisher/1.0",
+    }
+
+
 def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str) -> Dict[str, Any]:
     mutation = """
     mutation PublishPost($input: PublishPostInput!) {
@@ -61,14 +75,21 @@ def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str
     }
 
     request_data = json.dumps({"query": mutation, "variables": variables}).encode("utf-8")
+    endpoint = os.environ.get("HASHNODE_API_URL", "https://gql.hashnode.com")
     request = urllib.request.Request(
-        "https://gql.hashnode.com",
+        endpoint,
         data=request_data,
-        headers={"Authorization": token, "Content-Type": "application/json"},
+        headers=build_request_headers(token),
         method="POST",
     )
-    with urllib.request.urlopen(request, timeout=60) as response:
-        body = json.loads(response.read().decode("utf-8"))
+    try:
+        with urllib.request.urlopen(request, timeout=60) as response:
+            body = json.loads(response.read().decode("utf-8"))
+    except urllib.error.HTTPError as exc:
+        detail = exc.read().decode("utf-8", "ignore").strip()
+        raise RuntimeError(f"Hashnode API returned {exc.code}: {detail or exc.reason}") from exc
+    except urllib.error.URLError as exc:
+        raise RuntimeError(f"Hashnode request failed: {exc.reason}") from exc
 
     if "errors" in body:
         raise RuntimeError(json.dumps(body["errors"], indent=2))
@@ -89,6 +110,7 @@ def main() -> int:
         print("Missing HASHNODE_TOKEN or HASHNODE_PUBLICATION_ID; exporting content only and skipping Hashnode publish.", file=sys.stderr)
 
     published_posts: List[Path] = []
+    failed_posts: List[str] = []
     for post_path in sorted(posts_dir.glob("*.md")):
         payload = build_payload(post_path, state)
         if payload.get("skip"):
@@ -106,12 +128,17 @@ def main() -> int:
                 state[str(post_path)] = {"slug": result["slug"], "hash": payload["content_hash"]}
                 published_posts.append(post_path)
             except Exception as exc:
+                failed_posts.append(post_path.name)
                 print(f"Failed to publish {post_path.name}: {exc}", file=sys.stderr)
                 continue
         else:
             state[str(post_path)] = {"slug": payload["slug"], "hash": payload["content_hash"], "status": "exported"}
 
     save_state(state_path, state)
+    if failed_posts:
+        print(f"Hashnode publishing failed for {len(failed_posts)} posts: {', '.join(failed_posts)}", file=sys.stderr)
+        return 1
+
     print(f"Processed {len(published_posts)} new or updated posts and exported artifacts for the rest.")
     return 0
 

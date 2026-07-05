@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.hashnode_utils import parse_front_matter, prepare_content, load_state, save_state
+from scripts.publish_hashnode import build_request_headers
 
 
 class HashnodePublishTests(unittest.TestCase):
@@ -54,6 +55,11 @@ print('hi')
             save_state(state_path, {"post-1": {"slug": "my-post", "hash": "abc"}})
             state = load_state(state_path)
             self.assertEqual(state["post-1"]["slug"], "my-post")
+
+    def test_build_request_headers_use_raw_token(self):
+        headers = build_request_headers("demo-token")
+        self.assertEqual(headers["Authorization"], "demo-token")
+        self.assertEqual(headers["Content-Type"], "application/json")
 
 
 if __name__ == "__main__":

@@ -15,8 +15,10 @@ This repository keeps GitHub Pages as the canonical publishing destination. It n
 
 Add these repository secrets in GitHub:
 
-- `HASHNODE_TOKEN`: your Hashnode API token.
+- `HASHNODE_TOKEN`: your Hashnode personal access token from the developer settings.
 - `HASHNODE_PUBLICATION_ID`: the publication ID that should receive the posts.
+
+> Hashnode now requires GraphQL write access for the publication to be on a Pro plan. If the publication is not Pro or the token does not belong to an account that can write to that publication, the publish step will return 403.
 
 ## Local testing
 
