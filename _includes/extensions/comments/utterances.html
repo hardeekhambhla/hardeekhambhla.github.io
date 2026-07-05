@@ -1,24 +1,26 @@
 {%- if site.utterances.follow_site_theme -%}
 <div id="utterances-placeholder"></div>
 <script>
-  const utterancesThemeFromDataTheme = () => {
+  const getUtterancesTheme = () => {
     const dataTheme = document.documentElement.getAttribute('data-theme');
-    return `github-${dataTheme}`;
+    if (dataTheme === 'dark') {
+      return 'github-dark';
+    }
+    return 'github-light';
   };
 
   const setUtterancesTheme = () => {
     const iframe = document.querySelector('.utterances-frame');
-    if (iframe) {
+    if (iframe && iframe.contentWindow) {
       const message = {
         type: 'set-theme',
-        theme: utterancesThemeFromDataTheme()
+        theme: getUtterancesTheme()
       };
       iframe.contentWindow.postMessage(message, 'https://utteranc.es');
     }
-  }
+  };
 
-  // dynamic change
-  const observer = new MutationObserver((mutationsList, observer) => {
+  const observer = new MutationObserver((mutationsList) => {
     for (let mutation of mutationsList) {
       if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
         setUtterancesTheme();
@@ -27,17 +29,18 @@
   });
   observer.observe(document.documentElement, { attributes: true, childList: false, subtree: false });
 
-  let utterancesScript = document.createElement('script');
-  utterancesScript.async = true;
-  utterancesScript.src = 'https://utteranc.es/client.js';
-  utterancesScript.crossOrigin = 'anonymous';
-  utterancesScript.setAttribute('issue-term', '{{ site.utterances.issue_term }}');
-  utterancesScript.setAttribute('label', '{{ site.utterances.label }}');
-  utterancesScript.setAttribute('repo', '{{ site.utterances.repo }}');
-  utterancesScript.setAttribute('theme', utterancesThemeFromDataTheme());
-
   const placeholder = document.getElementById('utterances-placeholder');
-  placeholder.parentNode.replaceChild(utterancesScript, placeholder);
+  if (placeholder) {
+    const utterancesScript = document.createElement('script');
+    utterancesScript.async = true;
+    utterancesScript.src = 'https://utteranc.es/client.js';
+    utterancesScript.crossOrigin = 'anonymous';
+    utterancesScript.setAttribute('issue-term', '{{ site.utterances.issue_term }}');
+    utterancesScript.setAttribute('label', '{{ site.utterances.label }}');
+    utterancesScript.setAttribute('repo', '{{ site.utterances.repo }}');
+    utterancesScript.setAttribute('theme', getUtterancesTheme());
+    placeholder.parentNode.replaceChild(utterancesScript, placeholder);
+  }
 </script>
 {%- else -%}
 <script async
