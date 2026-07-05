@@ -24,6 +24,14 @@ jobs:
         run: |
           python -m pip install --upgrade pip
 
+      - name: Verify Hashnode secrets
+        env:
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+        run: |
+          if [ -n "$HASHNODE_TOKEN" ]; then echo "HASHNODE_TOKEN is configured"; else echo "HASHNODE_TOKEN is missing"; fi
+          if [ -n "$HASHNODE_PUBLICATION_ID" ]; then echo "HASHNODE_PUBLICATION_ID is configured"; else echo "HASHNODE_PUBLICATION_ID is missing"; fi
+
       - name: Publish posts
         env:
           HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
