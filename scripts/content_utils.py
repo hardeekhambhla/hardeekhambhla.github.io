@@ -1,7 +1,6 @@
-import json
 import re
 from pathlib import Path
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 
 
 def parse_front_matter(markdown: str) -> Dict[str, Any]:
@@ -56,22 +55,3 @@ def prepare_content(markdown: str) -> str:
     content = re.sub(r"</p>", "\n\n", content, flags=re.IGNORECASE)
     content = re.sub(r"\n{3,}", "\n\n", content)
     return content.strip()
-
-
-def load_state(path: Optional[Path] = None) -> Dict[str, Any]:
-    if path is None:
-        path = Path(".hashnode-state.json")
-    if not path.exists():
-        return {}
-    with path.open("r", encoding="utf-8") as handle:
-        return json.load(handle)
-
-
-def save_state(path: Optional[Path] = None, state: Optional[Dict[str, Any]] = None) -> None:
-    if path is None:
-        path = Path(".hashnode-state.json")
-    if state is None:
-        state = {}
-    with path.open("w", encoding="utf-8") as handle:
-        json.dump(state, handle, indent=2, sort_keys=True)
-        handle.write("\n")

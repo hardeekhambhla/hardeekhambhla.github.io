@@ -1,5 +1,4 @@
 import sys
-from html import escape
 from pathlib import Path
 from typing import Dict, List
 
@@ -7,7 +6,7 @@ repo_root = Path(__file__).resolve().parent.parent
 if str(repo_root) not in sys.path:
     sys.path.insert(0, str(repo_root))
 
-from scripts.hashnode_utils import parse_front_matter, prepare_content
+from scripts.content_utils import parse_front_matter, prepare_content
 
 
 def _build_export(payload: Dict[str, object], slug: str) -> Dict[str, str]:
@@ -31,22 +30,9 @@ def _build_export(payload: Dict[str, object], slug: str) -> Dict[str, str]:
     if image:
         markdown_body = f"![cover]({image})\n\n" + markdown_body
 
-    html_body = f"<article><h1>{escape(title)}</h1>"
-    if description:
-        html_body += f"<p><em>{escape(description)}</em></p>"
-    if date:
-        html_body += f"<p><strong>Date:</strong> {escape(date)}</p>"
-    if tags:
-        html_body += f"<p><strong>Tags:</strong> {escape(tags)}</p>"
-    if image:
-        html_body += f"<figure><img src=\"{escape(image)}\" alt=\"{escape(title)}\" /></figure>"
-    html_body += f"<div>{content}</div></article>"
-
     return {
         "medium_markdown": markdown_body,
-        "substack_markdown": markdown_body.replace("# ", "# ", 1),
-        "medium_html": html_body,
-        "substack_html": html_body,
+        "substack_markdown": markdown_body,
     }
 
 
@@ -64,14 +50,17 @@ def export_platform_versions(post_path: Path, output_dir: Path) -> List[Path]:
     export = _build_export(payload, post_path.stem)
 
     output_dir.mkdir(parents=True, exist_ok=True)
+    medium_dir = output_dir / "medium"
+    substack_dir = output_dir / "substack"
+    medium_dir.mkdir(parents=True, exist_ok=True)
+    substack_dir.mkdir(parents=True, exist_ok=True)
+
     written_paths: List[Path] = []
-    for suffix, content in {
-        f"{post_path.stem}.medium.md": export["medium_markdown"],
-        f"{post_path.stem}.substack.md": export["substack_markdown"],
-        f"{post_path.stem}.medium.html": export["medium_html"],
-        f"{post_path.stem}.substack.html": export["substack_html"],
+    for target_dir, content in {
+        medium_dir: export["medium_markdown"],
+        substack_dir: export["substack_markdown"],
     }.items():
-        output_path = output_dir / suffix
+        output_path = target_dir / f"{post_path.stem}.md"
         output_path.write_text(content, encoding="utf-8")
         written_paths.append(output_path)
     return written_paths

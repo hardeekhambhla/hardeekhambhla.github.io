@@ -1,13 +1,12 @@
-import os
 import tempfile
 import unittest
 from pathlib import Path
 
-from scripts.hashnode_utils import parse_front_matter, prepare_content, load_state, save_state
-from scripts.publish_hashnode import build_request_headers, _post_hashnode_request
+from scripts.content_utils import parse_front_matter, prepare_content
+from scripts.generate_platform_content import export_platform_versions
 
 
-class HashnodePublishTests(unittest.TestCase):
+class PlatformExportTests(unittest.TestCase):
     def test_parse_front_matter_extracts_metadata(self):
         sample = """---
 title: My Test Post
@@ -49,20 +48,30 @@ print('hi')
         self.assertIn("```python", cleaned)
         self.assertNotIn("---", cleaned)
 
-    def test_state_round_trip(self):
+    def test_export_platform_versions_writes_to_dedicated_folders(self):
         with tempfile.TemporaryDirectory() as tmpdir:
-            state_path = Path(tmpdir) / "state.json"
-            save_state(state_path, {"post-1": {"slug": "my-post", "hash": "abc"}})
-            state = load_state(state_path)
-            self.assertEqual(state["post-1"]["slug"], "my-post")
+            repo_root = Path(tmpdir)
+            post_path = repo_root / "_posts" / "2026-07-05-test-post.md"
+            post_path.parent.mkdir(parents=True, exist_ok=True)
+            post_path.write_text(
+                """---
+title: My Test Post
+description: A short summary.
+tags: one two
+image: https://example.com/cover.jpg
+---
 
-    def test_build_request_headers_use_raw_token(self):
-        headers = build_request_headers("demo-token")
-        self.assertEqual(headers["Authorization"], "demo-token")
-        self.assertEqual(headers["Content-Type"], "application/json")
+Hello world.
+""",
+                encoding="utf-8",
+            )
 
-    def test_post_hashnode_request_requires_endpoint_and_payload(self):
-        self.assertTrue(callable(_post_hashnode_request))
+            output_dir = repo_root / "artifacts"
+            written_paths = export_platform_versions(post_path, output_dir)
+
+            self.assertEqual(len(written_paths), 2)
+            self.assertTrue((output_dir / "medium" / f"{post_path.stem}.md").exists())
+            self.assertTrue((output_dir / "substack" / f"{post_path.stem}.md").exists())
 
 
 if __name__ == "__main__":
