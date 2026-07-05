@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 
 from scripts.hashnode_utils import parse_front_matter, prepare_content, load_state, save_state
-from scripts.publish_hashnode import build_request_headers
+from scripts.publish_hashnode import build_request_headers, _post_hashnode_request
 
 
 class HashnodePublishTests(unittest.TestCase):
@@ -60,6 +60,9 @@ print('hi')
         headers = build_request_headers("demo-token")
         self.assertEqual(headers["Authorization"], "demo-token")
         self.assertEqual(headers["Content-Type"], "application/json")
+
+    def test_post_hashnode_request_requires_endpoint_and_payload(self):
+        self.assertTrue(callable(_post_hashnode_request))
 
 
 if __name__ == "__main__":

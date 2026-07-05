@@ -53,9 +53,20 @@ def build_request_headers(token: str) -> Dict[str, str]:
 
 
 def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str) -> Dict[str, Any]:
-    mutation = """
-    mutation PublishPost($input: PublishPostInput!) {
-      publishPost(input: $input) {
+    create_draft_mutation = """
+    mutation CreateDraft($input: CreateDraftInput!) {
+      createDraft(input: $input) {
+        draft {
+          id
+          title
+        }
+      }
+    }
+    """
+
+    publish_draft_mutation = """
+    mutation PublishDraft($input: PublishDraftInput!) {
+      publishDraft(input: $input) {
         post {
           slug
           title
@@ -64,22 +75,30 @@ def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str
     }
     """
 
-    variables = {
+    create_variables = {
         "input": {
             "publicationId": publication_id,
             "title": payload["title"],
             "contentMarkdown": payload["body"],
-            "tags": payload["tags"],
-            "coverImage": payload.get("image", ""),
+            "tags": [{"name": tag, "slug": tag.lower().replace(" ", "-")} for tag in payload["tags"]],
         }
     }
 
-    request_payload = {"query": mutation, "variables": variables}
-    request_data = json.dumps(request_payload).encode("utf-8")
     endpoint = os.environ.get("HASHNODE_API_URL", "https://gql.hashnode.com")
     print(f"Hashnode endpoint: {endpoint}", file=sys.stderr)
     print(f"Hashnode publication id: {publication_id}", file=sys.stderr)
     print(f"Hashnode title: {payload['title']}", file=sys.stderr)
+
+    draft_response = _post_hashnode_request(endpoint, token, create_draft_mutation, create_variables)
+    draft_id = draft_response["data"]["createDraft"]["draft"]["id"]
+    publish_variables = {"input": {"draftId": draft_id}}
+    publish_response = _post_hashnode_request(endpoint, token, publish_draft_mutation, publish_variables)
+    return publish_response["data"]["publishDraft"]["post"]
+
+
+def _post_hashnode_request(endpoint: str, token: str, mutation: str, variables: Dict[str, Any]) -> Dict[str, Any]:
+    request_payload = {"query": mutation, "variables": variables}
+    request_data = json.dumps(request_payload).encode("utf-8")
     request = urllib.request.Request(
         endpoint,
         data=request_data,
@@ -103,8 +122,7 @@ def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str
 
     if "errors" in body:
         raise RuntimeError(json.dumps(body["errors"], indent=2))
-
-    return body["data"]["publishPost"]["post"]
+    return body
 
 
 def main() -> int:
