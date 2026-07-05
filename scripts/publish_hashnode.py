@@ -74,8 +74,12 @@ def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str
         }
     }
 
-    request_data = json.dumps({"query": mutation, "variables": variables}).encode("utf-8")
+    request_payload = {"query": mutation, "variables": variables}
+    request_data = json.dumps(request_payload).encode("utf-8")
     endpoint = os.environ.get("HASHNODE_API_URL", "https://gql.hashnode.com")
+    print(f"Hashnode endpoint: {endpoint}", file=sys.stderr)
+    print(f"Hashnode publication id: {publication_id}", file=sys.stderr)
+    print(f"Hashnode title: {payload['title']}", file=sys.stderr)
     request = urllib.request.Request(
         endpoint,
         data=request_data,
@@ -84,12 +88,18 @@ def publish_to_hashnode(payload: Dict[str, Any], token: str, publication_id: str
     )
     try:
         with urllib.request.urlopen(request, timeout=60) as response:
-            body = json.loads(response.read().decode("utf-8"))
+            raw_body = response.read().decode("utf-8", "ignore")
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", "ignore").strip()
         raise RuntimeError(f"Hashnode API returned {exc.code}: {detail or exc.reason}") from exc
     except urllib.error.URLError as exc:
         raise RuntimeError(f"Hashnode request failed: {exc.reason}") from exc
+
+    print(f"Hashnode raw response: {raw_body[:1000]}", file=sys.stderr)
+    try:
+        body = json.loads(raw_body) if raw_body.strip() else {}
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"Hashnode returned non-JSON response: {raw_body[:500]}") from exc
 
     if "errors" in body:
         raise RuntimeError(json.dumps(body["errors"], indent=2))
