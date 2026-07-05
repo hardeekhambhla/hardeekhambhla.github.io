@@ -1,0 +1,41 @@
+name: Publish posts to Hashnode
+
+on:
+  push:
+    paths:
+      - '_posts/**'
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Publish posts
+        env:
+          HASHNODE_TOKEN: ${{ secrets.HASHNODE_TOKEN }}
+          HASHNODE_PUBLICATION_ID: ${{ secrets.HASHNODE_PUBLICATION_ID }}
+        run: |
+          python scripts/publish_hashnode.py
+
+      - name: Upload platform artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: platform-export-artifacts
+          path: |
+            artifacts/*
+            .hashnode-state.json
+          if-no-files-found: warn
