@@ -3,9 +3,9 @@ import Base from '../../layouts/Base.astro';
 import { getNotes, tagList, cap } from '../../lib/posts';
 const tags = tagList(await getNotes());
 ---
-<Base title="Topics">
+<Base title="Topics" wide>
   <h1 class="page-title">Topics</h1>
-  <ul class="group">
+  <ul class="group topics">
     {tags.map(([t, n]) => (
       <li>
         <a class="row" href={`/tags/${t}/`}>

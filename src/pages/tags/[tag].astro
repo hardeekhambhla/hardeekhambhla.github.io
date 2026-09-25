@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { notes } = Astro.props;
 ---
-<Base title={cap(tag!)}>
+<Base title={cap(tag!)} wide>
   <h1 class="page-title">{cap(tag!)}</h1>
   <PostList notes={notes} />
 </Base>
