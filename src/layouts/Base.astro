@@ -16,6 +16,7 @@ const { title, description = "hi, I'm Hardee. I enjoy listening to other people'
 const full = title ? `${title} · ${site}` : site;
 const url = new URL(Astro.url.pathname, Astro.site);
 const hasHero = Astro.slots.has('hero');
+const split = hasHero && fade && !home;
 ---
 <!doctype html>
 <html lang="en">
@@ -44,6 +45,7 @@ const hasHero = Astro.slots.has('hero');
       )}
       {about || hideAbout ? <span /> : <a class="glass" href="/about/">About</a>}
     </header>
+    <div class={`page${split ? ' split' : ''}`}>
     <slot name="hero" />
     <div class={`sheet${!hasHero ? ' flat' : fade ? ' fade' : ''}`}>
       <div class={`wrap${wide ? ' wide' : ''}`}>
@@ -55,6 +57,7 @@ const hasHero = Astro.slots.has('hero');
           <a href="/tags/">Topics</a>
         </footer>
       </div>
+    </div>
     </div>
   </body>
 </html>
