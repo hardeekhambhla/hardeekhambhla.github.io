@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+import { fmtDate, type Note } from '../lib/posts';
+const { notes } = Astro.props as { notes: Note[] };
+---
+<ul class="group posts">
+  {notes.map((n) => (
+    <li>
+      <a class="post" href={n.url}>
+        {n.data.image && <Image class="thumb" src={n.data.image} inferSize alt="" widths={[144, 216]} sizes="88px" loading="lazy" />}
+        <div class="info">
+          <h2>{n.data.title}</h2>
+          {n.data.subtitle && <p class="desc">{n.data.subtitle}</p>}
+          <div class="when">{fmtDate(n.date)}</div>
+        </div>
+        <svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 6 6-6 6" /></svg>
+      </a>
+    </li>
+  ))}
+</ul>

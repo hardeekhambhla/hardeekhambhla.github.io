@@ -1,0 +1,19 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../layouts/PostList.astro';
+import { getNotes, tagList, cap } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return tagList(notes).map(([tag]) => ({
+    params: { tag },
+    props: { notes: notes.filter((n) => n.data.tags.includes(tag)) },
+  }));
+}
+const { tag } = Astro.params;
+const { notes } = Astro.props;
+---
+<Base title={cap(tag!)}>
+  <h1 class="page-title">{cap(tag!)}</h1>
+  <PostList notes={notes} />
+</Base>

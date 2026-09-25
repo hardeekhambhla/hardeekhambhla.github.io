@@ -1,0 +1,13 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Hero from '../layouts/Hero.astro';
+import { getNotes } from '../lib/posts';
+const note = (await getNotes()).find((n) => n.slug === 'about-me')!;
+const { Content } = await render(note);
+---
+<Base title="About" about fade={!!note.data.image}>
+  {note.data.image && <Hero slot="hero" fade narrow src={note.data.image} />}
+  <header class="title-block"><h1>About</h1></header>
+  <div class="prose"><Content /></div>
+</Base>

@@ -1,0 +1,53 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Comments from '../layouts/Comments.astro';
+import Hero from '../layouts/Hero.astro';
+import { getNotes, fmtDate, cap } from '../lib/posts';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return notes.map((note, i) => ({
+    // dev server strips .html from requests; build keeps it
+    params: { path: import.meta.env.DEV ? note.url.slice(1, -5) : note.url.slice(1) },
+    props: { note, newer: notes[i - 1], older: notes[i + 1] },
+  }));
+}
+const { note, newer, older } = Astro.props;
+const { Content } = await render(note);
+const d = note.data;
+const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
+---
+<Base title={d.title} description={d.subtitle} image={d.image} hideAbout fade={!!d.image}>
+  {d.image && <Hero slot="hero" fade narrow src={d.image} />}
+  <article>
+    <header class="title-block">
+      <h1>{d.title}</h1>
+      {d.subtitle && <p class="sub">{d.subtitle}</p>}
+      <div class="byline">{fmtDate(note.date)} · {minutes} min read</div>
+    </header>
+    <div class="prose"><Content /></div>
+    {d.tags.length > 0 && (
+      <p class="tagline">
+        {d.tags.map((t, i) => <>{i > 0 && ' · '}<a href={`/tags/${t}/`}>{cap(t)}</a></>)}
+      </p>
+    )}
+  </article>
+
+  {(newer || older) && (
+    <div class="group pn">
+      {older && <a class="row" href={older.url}><div class="body"><small>Older</small><b>{older.data.title}</b></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 6 6-6 6" /></svg></a>}
+      {newer && <a class="row" href={newer.url}><div class="body"><small>Newer</small><b>{newer.data.title}</b></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 6 6-6 6" /></svg></a>}
+    </div>
+  )}
+
+  <Comments post={note.slug} />
+
+  <dialog class="lightbox" id="lb"><img alt="" /></dialog>
+  <script is:inline>
+    const lb = document.getElementById('lb');
+    document.querySelectorAll('a.photo-swipe').forEach((a) =>
+      a.addEventListener('click', (e) => { e.preventDefault(); lb.querySelector('img').src = a.href; lb.showModal(); }));
+    lb.addEventListener('click', () => lb.close());
+  </script>
+</Base>

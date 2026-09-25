@@ -1,0 +1,11 @@
+name = "hardee-comments"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://hardeekhambhla.github.io,http://localhost:4321,http://localhost:4322"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "blog-comments"
+database_id = "REPLACE_WITH_ID_FROM_wrangler_d1_create"

@@ -1,0 +1,75 @@
+---
+const { post } = Astro.props as { post: string };
+const api = import.meta.env.PUBLIC_COMMENTS_API;
+---
+{api && (
+  <section class="comments" id="comments" data-api={api} data-post={post}>
+    <h2>Comments</h2>
+    <ul id="c-list" hidden></ul>
+    <form class="c-form" id="c-form">
+      <input name="name" placeholder="Your name" maxlength="40" autocomplete="nickname" required />
+      <textarea name="body" placeholder="Write a comment" rows="3" maxlength="2000" required></textarea>
+      <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="c-actions"><span id="c-msg"></span><button type="submit">Post</button></div>
+    </form>
+  </section>
+)}
+<script>
+  const root = document.getElementById('comments');
+  if (root) {
+    const { api, post } = root.dataset as { api: string; post: string };
+    const list = document.getElementById('c-list')!;
+    const form = document.getElementById('c-form') as HTMLFormElement;
+    const msg = document.getElementById('c-msg')!;
+    const store = {
+      get: (k: string) => { try { return localStorage.getItem(k); } catch { return null; } },
+      set: (k: string, v: string) => { try { localStorage.setItem(k, v); } catch {} },
+    };
+    let device = store.get('device');
+    if (!device) { device = crypto.randomUUID(); store.set('device', device); }
+    const headers = { 'Content-Type': 'application/json', 'X-Device': device };
+    (form.elements.namedItem('name') as HTMLInputElement).value = store.get('name') ?? '';
+
+    type C = { id: number; name: string; body: string; created_at: number; mine: boolean };
+    const ago = (t: number) => new Date(t).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    const add = (c: C) => {
+      const li = document.createElement('li');
+      li.className = 'c-item';
+      const head = document.createElement('div');
+      head.className = 'c-head';
+      const who = document.createElement('b'); who.textContent = c.name;
+      const when = document.createElement('span'); when.textContent = ago(c.created_at);
+      head.append(who, when);
+      if (c.mine) {
+        const del = document.createElement('button');
+        del.type = 'button'; del.textContent = 'Delete';
+        del.onclick = async () => {
+          const r = await fetch(`${api}/comments/${c.id}`, { method: 'DELETE', headers });
+          if (r.ok) { li.remove(); list.hidden = !list.children.length; }
+        };
+        head.append(del);
+      }
+      const body = document.createElement('p'); body.textContent = c.body;
+      li.append(head, body);
+      list.append(li); list.hidden = false;
+    };
+
+    fetch(`${api}/comments?post=${encodeURIComponent(post)}`, { headers })
+      .then((r) => r.json()).then((cs: C[]) => cs.forEach(add)).catch(() => {});
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = new FormData(form);
+      msg.textContent = '';
+      const r = await fetch(`${api}/comments`, {
+        method: 'POST', headers,
+        body: JSON.stringify({ post, name: f.get('name'), body: f.get('body'), website: f.get('website') }),
+      }).catch(() => null);
+      const data = await r?.json().catch(() => ({}));
+      if (r?.ok && data.id) {
+        store.set('name', String(f.get('name')));
+        add(data); (form.elements.namedItem('body') as HTMLTextAreaElement).value = '';
+      } else msg.textContent = data?.error ?? 'Could not post';
+    });
+  }
+</script>

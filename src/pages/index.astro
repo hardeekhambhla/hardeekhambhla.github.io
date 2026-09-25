@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../layouts/Hero.astro';
+import PostList from '../layouts/PostList.astro';
+import { getNotes, HOME_BANNER } from '../lib/posts';
+const notes = await getNotes();
+---
+<Base home fade>
+  <Hero slot="hero" fade src={HOME_BANNER} alt="Snow-covered Alps above a sea of cloud">
+    <h1>Pages from 20s</h1>
+    <p class="sub">hi, I'm Hardee</p>
+  </Hero>
+  <PostList notes={notes} />
+</Base>

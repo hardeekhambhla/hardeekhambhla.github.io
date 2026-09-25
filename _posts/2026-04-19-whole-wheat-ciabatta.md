@@ -4,7 +4,7 @@ title: Whole Wheat Ciabatta Bread
 subtitle: Five ingredients, a little patience, and really good bread.
 author: Hardee Khambhla
 categories: food
-tags: baking bread ciabatta wholewheat recipe homemade
+tags: baking bread food recipes
 banner:
   image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg
 image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/side%20view.jpg
