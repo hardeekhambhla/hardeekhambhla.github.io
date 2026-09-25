@@ -38,15 +38,10 @@ Deploys via GitHub Actions (`.github/workflows/deploy.yml`). In repo Settings â†
 
 ## Comments
 
-Cloudflare Worker + D1 in `worker/`. No login: commenters pick a name, saved in the browser with a private device id (used to delete their own comments).
+Cloudflare Worker + D1 in `worker/`, deployed automatically by the workflow. No login: commenters pick a name, saved in the browser with a private device id (used to delete their own comments).
 
-```bash
-cd worker && npm i
-npx wrangler d1 create comments      # paste database_id into wrangler.toml
-npm run db:remote
-npx wrangler secret put ADMIN_KEY    # optional, lets you delete any comment
-npm run deploy                       # prints https://hardee-comments.<you>.workers.dev
-```
+One-time setup: in Cloudflare create an API token (My Profile -> API Tokens -> "Edit Cloudflare Workers" template, plus Account -> D1 -> Edit), then add GitHub repo secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Every push to `master` then creates the database, deploys the Worker and points the site at it. Without the secrets, comments are simply hidden.
 
-Then set the repo variable `COMMENTS_API` (Settings â†’ Variables) to that URL. Local dev: `npm run db:local && npm run dev` in `worker/`, plus `npm run dev` at the root (uses `.env.development`).
-Delete any comment: `curl -X DELETE -H "Authorization: Bearer $ADMIN_KEY" $API/comments/<id>` with an allowed `Origin` header.
+Custom domain: add it to `ALLOWED_ORIGINS` in `worker/wrangler.toml`.
+Local dev: `npm run db:local && npm run dev` in `worker/`, plus `npm run dev` at the root (uses `.env.development`).
+Delete any comment: set an `ADMIN_KEY` secret on the Worker, then `curl -X DELETE -H "Authorization: Bearer $KEY" -H "Origin: https://hardeekhambhla.github.io" $API/comments/<id>`.

@@ -15,7 +15,40 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Comments backend on Cloudflare. Skipped (comments hidden) until the two secrets exist.
+  worker:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    defaults:
+      run:
+        working-directory: worker
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        with:
+          node-version: 22
+      - id: deploy
+        if: env.CLOUDFLARE_API_TOKEN != ''
+        run: |
+          npm ci
+          # create the D1 database once, then wire its id into wrangler.toml
+          ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="comments") | .uuid')
+          if [ -z "$ID" ]; then
+            npx wrangler d1 create comments
+            ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="comments") | .uuid')
+          fi
+          sed -i "s/REPLACE_WITH_ID_FROM_wrangler_d1_create/$ID/" wrangler.toml
+          npx wrangler d1 execute comments --remote --file=schema.sql
+          npx wrangler deploy 2>&1 | tee out.txt
+          echo "url=$(grep -oE 'https://[^ ]+\.workers\.dev' out.txt | head -1)" >> "$GITHUB_OUTPUT"
+
   build:
+    needs: worker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,7 +59,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          PUBLIC_COMMENTS_API: ${{ vars.COMMENTS_API }}
+          PUBLIC_COMMENTS_API: ${{ needs.worker.outputs.url }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
