@@ -6,7 +6,8 @@ import { getNotes, fmtDate, cap } from '../lib/posts';
 export async function getStaticPaths() {
   const notes = await getNotes();
   return notes.map((note, i) => ({
-    params: { path: note.url.slice(1) },
+    // dev server strips .html from requests; build keeps it
+    params: { path: import.meta.env.DEV ? note.url.slice(1, -5) : note.url.slice(1) },
     props: { note, newer: notes[i - 1], older: notes[i + 1] },
   }));
 }
