@@ -3,8 +3,10 @@ import { Image } from 'astro:assets';
 interface Props { src: string; alt?: string; fade?: boolean; narrow?: boolean }
 const { src, alt = '', fade = false, narrow = false } = Astro.props;
 const hasText = Astro.slots.has('default');
+const hasOverlay = Astro.slots.has('overlay');
 ---
 <section class={`hero${fade ? ' fade' : ''}${narrow ? ' narrow' : ''}`}>
   <Image src={src} inferSize alt={alt} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
   {hasText && <div class="wrap"><slot /></div>}
+  {hasOverlay && <div class="overlay-text"><slot name="overlay" /></div>}
 </section>
