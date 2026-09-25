@@ -1,9 +1,9 @@
 ---
 import { Image } from 'astro:assets';
-interface Props { src: string; alt?: string }
-const { src, alt = '' } = Astro.props;
+interface Props { src: string; alt?: string; fade?: boolean }
+const { src, alt = '', fade = false } = Astro.props;
 ---
-<section class="hero">
+<section class={`hero${fade ? ' fade' : ''}`}>
   <Image src={src} inferSize alt={alt} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
-  <div class="wrap"><slot /></div>
+  {!fade && <div class="wrap"><slot /></div>}
 </section>
