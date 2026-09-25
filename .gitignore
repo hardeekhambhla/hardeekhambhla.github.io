@@ -2,3 +2,5 @@ node_modules
 dist
 .astro
 __pycache__
+.wrangler
+worker/node_modules

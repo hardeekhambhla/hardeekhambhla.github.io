@@ -132,3 +132,22 @@ h1.large { font-size: 34px; line-height: 1.12; letter-spacing: .37px; margin: 4p
 dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
 dialog.lightbox::backdrop { background: #000000d9; }
 dialog.lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 10px; display: block; }
+
+/* comments */
+.comments { margin: 8px 0 48px; }
+.c-item { padding: 10px 16px; }
+.c-head { display: flex; gap: 8px; align-items: baseline; font-size: 15px; }
+.c-head span { color: var(--muted); flex: 1; }
+.c-head button, .c-actions button { background: none; border: 0; color: var(--accent); font: inherit; cursor: pointer; padding: 0; }
+.c-item p { margin: 2px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.c-form { background: var(--card); border-radius: 12px; margin-top: 12px; overflow: hidden; }
+.c-form input, .c-form textarea {
+  display: block; width: 100%; border: 0; background: none; color: var(--text);
+  font: inherit; padding: 10px 16px; outline: none; resize: vertical;
+}
+.c-form input { border-bottom: 0.5px solid var(--line); font-weight: 600; }
+.c-form ::placeholder { color: var(--muted); font-weight: 400; }
+.c-form .hp { position: absolute; left: -9999px; }
+.c-actions { display: flex; justify-content: space-between; align-items: center; padding: 8px 16px 12px; }
+.c-actions button { font-weight: 600; }
+#c-msg { color: var(--muted); font-size: 15px; }

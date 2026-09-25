@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Comments from '../layouts/Comments.astro';
 import { getNotes, fmtDate, cap } from '../lib/posts';
 
 export async function getStaticPaths() {
@@ -35,7 +36,7 @@ const back = d.categories[0]
     </ul>
   )}
 
-  <div class="comments" id="comments"></div>
+  <Comments post={note.slug} />
 
   <dialog class="lightbox" id="lb"><img alt="" /></dialog>
   <script is:inline>
@@ -43,19 +44,5 @@ const back = d.categories[0]
     document.querySelectorAll('a.photo-swipe').forEach((a) =>
       a.addEventListener('click', (e) => { e.preventDefault(); lb.querySelector('img').src = a.href; lb.showModal(); }));
     lb.addEventListener('click', () => lb.close());
-
-    const dark = matchMedia('(prefers-color-scheme: dark)');
-    const s = document.createElement('script');
-    s.src = 'https://utteranc.es/client.js';
-    s.async = true; s.crossOrigin = 'anonymous';
-    s.setAttribute('repo', 'hardeekhambhla/hardeekhambhla.github.io');
-    s.setAttribute('issue-term', 'title');
-    s.setAttribute('label', 'utterances comment');
-    s.setAttribute('theme', dark.matches ? 'github-dark' : 'github-light');
-    document.getElementById('comments').appendChild(s);
-    dark.addEventListener('change', () => {
-      const f = document.querySelector('iframe.utterances-frame');
-      f && f.contentWindow.postMessage({ type: 'set-theme', theme: dark.matches ? 'github-dark' : 'github-light' }, 'https://utteranc.es');
-    });
   </script>
 </Base>

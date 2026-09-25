@@ -25,6 +25,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run build
+        env:
+          PUBLIC_COMMENTS_API: ${{ vars.COMMENTS_API }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
