@@ -5,7 +5,7 @@ import PostList from '../layouts/PostList.astro';
 import { getNotes, HOME_BANNER } from '../lib/posts';
 const notes = await getNotes();
 ---
-<Base overlay wide>
+<Base home wide>
   <Hero slot="hero" src={HOME_BANNER} alt="Snow-covered Alps above a sea of cloud">
     <h1>Pages from 20s</h1>
     <p class="sub">hi, I'm Hardee</p>

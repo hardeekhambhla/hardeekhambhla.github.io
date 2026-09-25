@@ -18,25 +18,26 @@ const { Content } = await render(note);
 const d = note.data;
 const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
-<Base title={d.title} description={d.subtitle} image={d.image} overlay={!!d.image}>
-  {d.image && (
-    <Hero slot="hero" short src={d.image}>
+<Base title={d.title} description={d.subtitle} image={d.image}>
+  {d.image && <Hero slot="hero" short src={d.image} />}
+  <article>
+    <header class="title-block">
       <h1>{d.title}</h1>
       {d.subtitle && <p class="sub">{d.subtitle}</p>}
-      <div class="meta">{fmtDate(note.date)} · {minutes} min read{d.categories[0] && <> · <a href={`/categories/${d.categories[0]}/`}>{cap(d.categories[0])}</a></>}</div>
-    </Hero>
-  )}
-  <div class="body-top"></div>
-  <article>
-    {!d.image && <h1 class="page-title">{d.title}</h1>}
+      <div class="pills">
+        <span class="pill">{fmtDate(note.date)}</span>
+        <span class="pill">{minutes} min read</span>
+        {d.categories.map((c) => <a class="pill" href={`/categories/${c}/`}>{cap(c)}</a>)}
+      </div>
+    </header>
     <div class="prose"><Content /></div>
   </article>
 
   {(newer || older) && (
-    <nav class="pn">
-      {older && <a href={older.url}><span>← Older</span>{older.data.title}</a>}
-      {newer && <a class="next" href={newer.url}><span>Newer →</span>{newer.data.title}</a>}
-    </nav>
+    <div class="group pn">
+      {older && <a class="row" href={older.url}><div class="body"><small>Older</small><b>{older.data.title}</b></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 6 6-6 6" /></svg></a>}
+      {newer && <a class="row" href={newer.url}><div class="body"><small>Newer</small><b>{newer.data.title}</b></div><svg viewBox="0 0 8 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m1 1 6 6-6 6" /></svg></a>}
+    </div>
   )}
 
   <Comments post={note.slug} />

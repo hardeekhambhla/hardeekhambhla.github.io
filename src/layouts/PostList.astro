@@ -4,7 +4,7 @@ import { fmtDate, cap, folders, type Note } from '../lib/posts';
 const { notes, all, current, filter = false } = Astro.props as { notes: Note[]; all: Note[]; current?: string; filter?: boolean };
 ---
 {filter && (
-  <nav class="filter" aria-label="Filter">
+  <nav class="seg" aria-label="Filter">
     <a href="/" aria-current={!current ? 'page' : undefined}>All</a>
     {folders(all).map(([f]) => <a href={`/categories/${f}/`} aria-current={current === f ? 'page' : undefined}>{cap(f)}</a>)}
   </nav>
@@ -14,8 +14,10 @@ const { notes, all, current, filter = false } = Astro.props as { notes: Note[]; 
     <li>
       <a class="card" href={n.url}>
         {n.data.image && <Image src={n.data.image} inferSize alt="" widths={[480, 800]} sizes="(max-width: 640px) 100vw, 500px" loading="lazy" />}
-        <h2>{n.data.title}</h2>
-        <div class="meta">{fmtDate(n.date)}</div>
+        <div class="cap">
+          <span class="date">{fmtDate(n.date)}</span>
+          <h2>{n.data.title}</h2>
+        </div>
       </a>
     </li>
   ))}
