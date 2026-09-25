@@ -68,10 +68,13 @@ body.wide .hero .wrap { max-width: 1040px; }
 .sheet { position: relative; z-index: 1; background: var(--bg); border-radius: 28px 28px 0 0; margin-top: -24px; padding-top: 24px; animation: rise .6s var(--ease) both; }
 .hero.fade { min-height: var(--banner-h); }
 .hero.fade > img { object-position: 50% 40%; }
-.hero.fade::after { background: linear-gradient(to top, var(--bg) 0%, var(--bg) 4%, transparent 62%); }
+.hero.fade::after { background: linear-gradient(to top, var(--bg) 0%, var(--bg) 8%, color-mix(in srgb, var(--bg) 72%, transparent) 30%, transparent 72%); }
+.hero.fade { color: var(--text); }
+.hero.fade .wrap { padding-bottom: 96px; }
+.hero.fade .sub { color: var(--muted); }
 @media (min-width: 900px) {
-  .hero.fade { max-width: 600px; margin: 0 auto; -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent); }
-  .hero.fade > img { object-position: 50% 30%; }
+  .hero.fade.narrow { max-width: 600px; margin: 0 auto; -webkit-mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(to right, transparent, #000 16%, #000 84%, transparent); }
+  .hero.fade.narrow > img { object-position: 50% 30%; }
 }
 .sheet.fade { background: none; border-radius: 0; margin-top: -72px; padding-top: 0; animation: none; }
 .sheet.flat { margin-top: 0; border-radius: 0; padding-top: 68px; animation: none; }
