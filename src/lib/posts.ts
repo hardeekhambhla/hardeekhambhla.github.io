@@ -21,9 +21,9 @@ export async function getNotes(): Promise<Note[]> {
 export const fmtDate = (d: Date) =>
   d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
-export const folders = (notes: Note[]) => {
+export const tagList = (notes: Note[]) => {
   const map = new Map<string, number>();
-  notes.forEach((n) => n.data.categories.forEach((c) => map.set(c, (map.get(c) ?? 0) + 1)));
+  notes.forEach((n) => n.data.tags.forEach((t) => map.set(t, (map.get(t) ?? 0) + 1)));
   return [...map].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
 };
 

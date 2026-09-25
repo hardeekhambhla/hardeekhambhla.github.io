@@ -10,7 +10,7 @@ const posts = defineCollection({
     subtitle: z.string().optional(),
     author: z.string().optional(),
     categories: words.default(''),
-    tags: words.default(''),
+    tags: words.transform((a) => a.map((t) => t.toLowerCase())).default(''),
     image: z.string().optional(),
   }),
 });

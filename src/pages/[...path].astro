@@ -24,13 +24,14 @@ const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 2
     <header class="title-block">
       <h1>{d.title}</h1>
       {d.subtitle && <p class="sub">{d.subtitle}</p>}
-      <div class="pills">
-        <span class="pill">{fmtDate(note.date)}</span>
-        <span class="pill">{minutes} min read</span>
-        {d.categories.map((c) => <a class="pill" href={`/categories/${c}/`}>{cap(c)}</a>)}
-      </div>
+      <div class="byline">{fmtDate(note.date)} · {minutes} min read</div>
     </header>
     <div class="prose"><Content /></div>
+    {d.tags.length > 0 && (
+      <p class="tagline">
+        {d.tags.map((t, i) => <>{i > 0 && ' · '}<a href={`/tags/${t}/`}>{cap(t)}</a></>)}
+      </p>
+    )}
   </article>
 
   {(newer || older) && (

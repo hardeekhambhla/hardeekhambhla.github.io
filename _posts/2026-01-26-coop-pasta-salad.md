@@ -7,7 +7,7 @@ categories: food travel
 banner:
   image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/brienz.jpg
 image: https://raw.githubusercontent.com/hardeekhambhla/blog-assets/main/brienz.jpg
-tags: cooking switzerland food memories travel
+tags: food memories switzerland travel
 top: 1
 toc: true
 sidebar: []

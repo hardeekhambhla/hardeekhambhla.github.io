@@ -74,10 +74,7 @@ body.wide .hero .wrap { max-width: 1040px; }
 .foot { margin: 48px 0 0; padding: 0 0 48px; text-align: center; color: var(--muted); font-size: 13px; }
 .foot a { color: var(--tint); margin-left: 12px; }
 
-/* segmented control */
-.seg { display: inline-flex; padding: 2px; background: var(--fill); border-radius: 10px; margin: 4px 0 20px; }
-.seg a { padding: 6px 18px; border-radius: 8px; font-size: 14px; font-weight: 600; }
-.seg a[aria-current] { background: var(--card); box-shadow: 0 1px 3px #0000001f; }
+/* page title */
 .page-title { font: 700 clamp(28px, 6vw, 38px)/1.1 var(--font); letter-spacing: -.035em; margin: 4px 0 10px; }
 
 /* post rows */
@@ -100,9 +97,8 @@ body.wide .hero .wrap { max-width: 1040px; }
 .title-block { margin: 0 0 20px; }
 .title-block h1 { font: 700 clamp(26px, 5vw, 36px)/1.1 var(--font); letter-spacing: -.03em; margin: 0 0 8px; }
 .title-block .sub { font: 500 17px/1.35 var(--font); color: var(--muted); margin: 0 0 12px; letter-spacing: -.015em; }
-.pills { display: flex; flex-wrap: wrap; gap: 8px; }
-.pill { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 999px; background: var(--fill); color: var(--muted); }
-a.pill { background: color-mix(in srgb, var(--tint) 14%, transparent); color: var(--tint); }
+
+.byline { color: var(--muted); font-size: 14px; }
 
 .prose { font-size: 17px; line-height: 1.6; }
 .prose > * + * { margin-top: .9em; }
@@ -124,6 +120,12 @@ a.pill { background: color-mix(in srgb, var(--tint) 14%, transparent); color: va
 .prose pre code { background: none; padding: 0; }
 .prose table { border-collapse: collapse; width: 100%; font-size: 16px; }
 .prose th, .prose td { border-bottom: 1px solid var(--line); padding: 8px; text-align: left; }
+
+/* tags */
+.tagline { margin: 32px 0 0; font-size: 14px; color: var(--muted); }
+.tagline a { color: var(--muted); }
+.tagline a:hover { color: var(--tint); }
+.count { color: var(--muted); }
 
 /* grouped rows */
 .group { list-style: none; margin: 0; padding: 0; background: var(--card); border-radius: 18px; overflow: hidden; }
