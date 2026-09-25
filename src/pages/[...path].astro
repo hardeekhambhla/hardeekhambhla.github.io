@@ -19,7 +19,15 @@ const d = note.data;
 const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
 <Base title={d.title} description={d.subtitle} image={d.image} hideAbout fade={!!d.image}>
-  {d.image && <Hero slot="hero" fade narrow src={d.image} />}
+  {d.image && (
+    <Hero slot="hero" fade narrow src={d.image}>
+      <div slot="overlay">
+        <h1>{d.title}</h1>
+        {d.subtitle && <p class="sub">{d.subtitle}</p>}
+        <div class="byline">{fmtDate(note.date)} · {minutes} min read</div>
+      </div>
+    </Hero>
+  )}
   <article>
     <header class="title-block">
       <h1>{d.title}</h1>

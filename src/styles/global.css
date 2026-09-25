@@ -177,6 +177,9 @@ dialog.lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 18px; di
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: .25s; }
 @media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
 
+/* title overlay on the photo: desktop only */
+.overlay-text { display: none; }
+
 /* ---------- desktop (phone layout above is untouched) ---------- */
 @media (min-width: 900px) {
   :root { --banner-h: min(62vh, 600px); }
@@ -206,12 +209,16 @@ dialog.lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 18px; di
   .page.split { display: grid; grid-template-columns: minmax(380px, 44%) 1fr; align-items: start; }
   .page.split .hero.fade { position: sticky; top: 0; height: 100vh; min-height: 0; }
   .page.split .hero.fade > img { object-position: 50% 40%; }
-  .page.split .hero.fade::after { display: none; }
+  .page.split .hero.fade { display: flex; align-items: flex-end; }
+  .page.split .hero.fade::after { background: linear-gradient(to top, #000000bf 0%, #00000059 38%, #00000000 68%); }
+  .overlay-text { display: block; position: relative; z-index: 1; width: 100%; padding: 0 44px 48px; color: #fff; }
+  .overlay-text h1 { font: 700 clamp(36px, 3.2vw, 52px)/1.08 var(--font); letter-spacing: -.035em; margin: 0 0 10px; }
+  .hero .overlay-text .sub { font: 500 20px/1.35 var(--font); letter-spacing: -.015em; margin: 0 0 14px; color: #ffffffe6; }
+  .overlay-text .byline { font-size: 14px; color: #ffffffcc; }
   .page.split .sheet.fade { margin-top: 0; }
   .page.split .sheet.fade .wrap { max-width: 760px; padding: 0 64px; margin: 0; }
-  .page.split .title-block { margin-top: 112px; margin-bottom: 28px; }
-  .page.split .title-block h1 { font-size: clamp(38px, 3.4vw, 54px); }
-  .page.split .title-block .sub { font-size: 20px; }
+  .page.split .title-block { display: none; }
+  .page.split article { padding-top: 104px; }
   .page.split .prose { font-size: 19px; line-height: 1.7; }
   .page.split .foot { margin-top: 64px; text-align: left; }
 }
