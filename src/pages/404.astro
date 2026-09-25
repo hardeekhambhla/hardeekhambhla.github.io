@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 ---
-<Base title="Not Found" back={{ href: '/', label: 'Notes' }}>
-  <h1 class="large">Note not found</h1>
-  <p class="empty">This note doesn’t exist, or it moved.</p>
+<Base title="Not Found">
+  <header class="post-head"><h1>Not found</h1></header>
+  <p class="empty">This page doesn’t exist, or it moved. <a href="/" style="color:var(--accent)">Back home</a></p>
 </Base>

@@ -15,25 +15,24 @@ export async function getStaticPaths() {
 const { note, newer, older } = Astro.props;
 const { Content } = await render(note);
 const d = note.data;
-const back = d.categories[0]
-  ? { href: `/categories/${d.categories[0]}/`, label: cap(d.categories[0]) }
-  : { href: '/', label: 'Notes' };
+const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
-<Base title={d.title} description={d.subtitle} image={d.image} back={back} barTitle={d.title}>
-  <article class="note">
-    <div class="stamp">{fmtDate(note.date)}</div>
-    <h1>{d.title}</h1>
-    {d.subtitle && <p class="sub">{d.subtitle}</p>}
+<Base title={d.title} description={d.subtitle} image={d.image}>
+  <article>
+    <header class="post-head">
+      <h1>{d.title}</h1>
+      {d.subtitle && <p class="sub">{d.subtitle}</p>}
+      <div class="meta">{fmtDate(note.date)} · {minutes} min read</div>
+    </header>
     {d.image && <img class="cover" src={d.image} alt="" />}
-    <Content />
-    {d.tags.length > 0 && <div class="tags">{d.tags.map((t) => <span>#{t}</span>)}</div>}
+    <div class="prose"><Content /></div>
   </article>
 
   {(newer || older) && (
-    <ul class="list pn">
-      {newer && <li><a class="row" href={newer.url}><div class="body"><div class="meta">Newer</div><div class="name">{newer.data.title}</div></div></a></li>}
-      {older && <li><a class="row" href={older.url}><div class="body"><div class="meta">Older</div><div class="name">{older.data.title}</div></div></a></li>}
-    </ul>
+    <nav class="pn">
+      {older && <a href={older.url}><span>← Older</span>{older.data.title}</a>}
+      {newer && <a class="next" href={newer.url}><span>Newer →</span>{newer.data.title}</a>}
+    </nav>
   )}
 
   <Comments post={note.slug} />

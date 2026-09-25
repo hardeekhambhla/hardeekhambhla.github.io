@@ -1,0 +1,19 @@
+---
+import { fmtDate, cap, folders, type Note } from '../lib/posts';
+const { notes, all, current } = Astro.props as { notes: Note[]; all: Note[]; current?: string };
+---
+<nav class="filter" aria-label="Filter">
+  <a href="/" aria-current={!current ? 'page' : undefined}>All</a>
+  {folders(all).map(([f]) => <a href={`/categories/${f}/`} aria-current={current === f ? 'page' : undefined}>{cap(f)}</a>)}
+</nav>
+<ul class="posts">
+  {notes.map((n) => (
+    <li>
+      <a href={n.url}>
+        <h2>{n.data.title}</h2>
+        {n.data.subtitle && <p>{n.data.subtitle}</p>}
+        <div class="meta">{fmtDate(n.date)}</div>
+      </a>
+    </li>
+  ))}
+</ul>

@@ -4,11 +4,11 @@ const api = import.meta.env.PUBLIC_COMMENTS_API;
 ---
 {api && (
   <section class="comments" id="comments" data-api={api} data-post={post}>
-    <h2 class="group-title">Comments</h2>
-    <ul class="list" id="c-list" hidden></ul>
+    <h2>Comments</h2>
+    <ul id="c-list" hidden></ul>
     <form class="c-form" id="c-form">
       <input name="name" placeholder="Your name" maxlength="40" autocomplete="nickname" required />
-      <textarea name="body" placeholder="Add a comment" rows="3" maxlength="2000" required></textarea>
+      <textarea name="body" placeholder="Write a comment" rows="3" maxlength="2000" required></textarea>
       <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <div class="c-actions"><span id="c-msg"></span><button type="submit">Post</button></div>
     </form>

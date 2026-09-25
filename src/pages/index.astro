@@ -1,45 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
-import NoteRow from '../layouts/NoteRow.astro';
-import FolderChips from '../layouts/FolderChips.astro';
-import { getNotes, folders } from '../lib/posts';
-
+import PostList from '../layouts/PostList.astro';
+import { getNotes } from '../lib/posts';
 const notes = await getNotes();
-const byYear = new Map<number, typeof notes>();
-notes.forEach((n) => {
-  const y = n.date.getUTCFullYear();
-  byYear.set(y, [...(byYear.get(y) ?? []), n]);
-});
 ---
-<Base barTitle="Notes">
-  <h1 class="large">Notes</h1>
-  <label class="search">
-    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="8.5" cy="8.5" r="5.5" /><path d="m13 13 4 4" /></svg>
-    <input id="q" type="search" placeholder="Search" autocomplete="off" aria-label="Search notes" />
-  </label>
-  <FolderChips folders={folders(notes)} />
-  {[...byYear].map(([year, items]) => (
-    <section class="year">
-      <h2 class="group-title">{year}</h2>
-      <ul class="list">{items.map((n) => <NoteRow note={n} />)}</ul>
-    </section>
-  ))}
-  <p class="empty" id="none" hidden>No Results</p>
-  <p class="count-foot">{notes.length} {notes.length === 1 ? 'Note' : 'Notes'}</p>
-  <script is:inline>
-    const q = document.getElementById('q');
-    q.addEventListener('input', () => {
-      const t = q.value.trim().toLowerCase();
-      let shown = 0;
-      document.querySelectorAll('.year').forEach((s) => {
-        let any = 0;
-        s.querySelectorAll('li').forEach((li) => {
-          const hit = !t || li.dataset.text.includes(t);
-          li.hidden = !hit; any += hit;
-        });
-        s.hidden = !any; shown += any;
-      });
-      document.getElementById('none').hidden = shown > 0;
-    });
-  </script>
+<Base>
+  <p class="intro">hi, I'm Hardee. I enjoy listening to other people's stories and sharing my own.</p>
+  <PostList notes={notes} all={notes} />
 </Base>

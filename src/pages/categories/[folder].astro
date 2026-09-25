@@ -1,7 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import NoteRow from '../../layouts/NoteRow.astro';
-import FolderChips from '../../layouts/FolderChips.astro';
+import PostList from '../../layouts/PostList.astro';
 import { getNotes, folders, cap } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -14,9 +13,7 @@ export async function getStaticPaths() {
 const { folder } = Astro.params;
 const { notes, all } = Astro.props;
 ---
-<Base title={cap(folder!)} back={{ href: '/categories/', label: 'Folders' }} barTitle={cap(folder!)}>
-  <h1 class="large">{cap(folder!)}</h1>
-  <FolderChips folders={folders(all)} current={folder} />
-  <ul class="list">{notes.map((n) => <NoteRow note={n} />)}</ul>
-  <p class="count-foot">{notes.length} {notes.length === 1 ? 'Note' : 'Notes'}</p>
+<Base title={cap(folder!)}>
+  <p class="intro">{cap(folder!)}</p>
+  <PostList notes={notes} all={all} current={folder} />
 </Base>
