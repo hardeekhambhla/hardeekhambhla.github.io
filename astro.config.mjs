@@ -27,7 +27,7 @@ const flatHtml = {
 };
 
 export default defineConfig({
-  site: 'https://hardeekhambhla.github.io',
+  site: 'https://blog.hardee.co.in',
   integrations: [sitemap(), flatHtml],
   devToolbar: { enabled: false },
   image: { domains: ['raw.githubusercontent.com', 'github.com'] },
