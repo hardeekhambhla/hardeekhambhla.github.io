@@ -175,3 +175,8 @@ body.wide .hero .wrap { max-width: 1040px; }
 dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; }
 dialog.lightbox::backdrop { background: #000000d9; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
 dialog.lightbox img { max-width: 96vw; max-height: 92vh; border-radius: 18px; display: block; }
+
+/* smooth page-to-page cross-fade (native, no JS) */
+@view-transition { navigation: auto; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .25s; }
+@media (prefers-reduced-motion: reduce) { @view-transition { navigation: none; } }
