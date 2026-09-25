@@ -1,13 +1,13 @@
 ---
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import Hero from '../layouts/Hero.astro';
+import { Image } from 'astro:assets';
 import { getNotes } from '../lib/posts';
 const note = (await getNotes()).find((n) => n.slug === 'about-me')!;
 const { Content } = await render(note);
 ---
 <Base title="About" about>
-  <Hero slot="hero" short src={note.data.image!} />
+  {note.data.image && <Image class="cover" src={note.data.image} inferSize alt="" widths={[640, 1280]} sizes="640px" loading="eager" />}
   <header class="title-block"><h1>About</h1></header>
   <div class="prose"><Content /></div>
 </Base>

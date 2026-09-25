@@ -2,7 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Comments from '../layouts/Comments.astro';
-import Hero from '../layouts/Hero.astro';
+import { Image } from 'astro:assets';
 import { getNotes, fmtDate, cap } from '../lib/posts';
 
 export async function getStaticPaths() {
@@ -19,8 +19,8 @@ const d = note.data;
 const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
 <Base title={d.title} description={d.subtitle} image={d.image} hideAbout>
-  {d.image && <Hero slot="hero" short src={d.image} />}
   <article>
+    {d.image && <Image class="cover" src={d.image} inferSize alt="" widths={[640, 1280]} sizes="640px" loading="eager" fetchpriority="high" />}
     <header class="title-block">
       <h1>{d.title}</h1>
       {d.subtitle && <p class="sub">{d.subtitle}</p>}
