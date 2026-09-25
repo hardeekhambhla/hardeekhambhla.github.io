@@ -18,7 +18,7 @@ const { Content } = await render(note);
 const d = note.data;
 const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
-<Base title={d.title} description={d.subtitle} image={d.image}>
+<Base title={d.title} description={d.subtitle} image={d.image} hideAbout>
   {d.image && <Hero slot="hero" short src={d.image} />}
   <article>
     <header class="title-block">

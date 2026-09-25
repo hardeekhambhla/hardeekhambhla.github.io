@@ -4,6 +4,7 @@ interface Props { src: string; short?: boolean; alt?: string }
 const { src, short = false, alt = '' } = Astro.props;
 ---
 <section class={`hero${short ? ' short' : ''}`}>
-  <Image src={src} inferSize alt={alt} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
-  <div class="wrap"><slot /></div>
+  {short && <Image class="bg" src={src} inferSize alt="" widths={[400]} sizes="400px" loading="eager" aria-hidden="true" />}
+  <Image class="fg" src={src} inferSize alt={alt} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
+  {!short && <div class="wrap"><slot /></div>}
 </section>

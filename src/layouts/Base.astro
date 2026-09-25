@@ -8,9 +8,10 @@ interface Props {
   wide?: boolean;
   home?: boolean;
   about?: boolean;
+  hideAbout?: boolean;
 }
 const site = 'Hardee Khambhla';
-const { title, description = "hi, I'm Hardee. I enjoy listening to other people's stories and sharing my own.", image, wide = false, home = false, about = false } = Astro.props;
+const { title, description = "hi, I'm Hardee. I enjoy listening to other people's stories and sharing my own.", image, wide = false, home = false, about = false, hideAbout = false } = Astro.props;
 const full = title ? `${title} · ${site}` : site;
 const url = new URL(Astro.url.pathname, Astro.site);
 const hasHero = Astro.slots.has('hero');
@@ -40,7 +41,7 @@ const hasHero = Astro.slots.has('hero');
           <svg viewBox="0 0 10 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 1.5 1.5 9l7 7.5" /></svg>
         </a>
       )}
-      {about ? <span /> : <a class="glass" href="/about/">About</a>}
+      {about || hideAbout ? <span /> : <a class="glass" href="/about/">About</a>}
     </header>
     <slot name="hero" />
     <div class={`sheet${hasHero ? '' : ' flat'}`}>
