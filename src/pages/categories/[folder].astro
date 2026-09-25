@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { folder } = Astro.params;
 const { notes, all } = Astro.props;
 ---
-<Base title={cap(folder!)} wide>
+<Base title={cap(folder!)}>
   <h1 class="page-title">{cap(folder!)}</h1>
   <PostList notes={notes} all={all} current={folder} filter />
 </Base>
