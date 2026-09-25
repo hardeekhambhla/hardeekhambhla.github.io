@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import Comments from '../layouts/Comments.astro';
+import Hero from '../layouts/Hero.astro';
 import { getNotes, fmtDate, cap } from '../lib/posts';
 
 export async function getStaticPaths() {
@@ -17,14 +18,17 @@ const { Content } = await render(note);
 const d = note.data;
 const minutes = Math.max(1, Math.round((note.body ?? '').split(/\s+/).length / 220));
 ---
-<Base title={d.title} description={d.subtitle} image={d.image}>
-  <article>
-    <header class="post-head">
+<Base title={d.title} description={d.subtitle} image={d.image} overlay={!!d.image}>
+  {d.image && (
+    <Hero slot="hero" short src={d.image}>
       <h1>{d.title}</h1>
       {d.subtitle && <p class="sub">{d.subtitle}</p>}
-      <div class="meta">{fmtDate(note.date)} · {minutes} min read</div>
-    </header>
-    {d.image && <img class="cover" src={d.image} alt="" />}
+      <div class="meta">{fmtDate(note.date)} · {minutes} min read{d.categories[0] && <> · <a href={`/categories/${d.categories[0]}/`}>{cap(d.categories[0])}</a></>}</div>
+    </Hero>
+  )}
+  <div class="body-top"></div>
+  <article>
+    {!d.image && <h1 class="page-title">{d.title}</h1>}
     <div class="prose"><Content /></div>
   </article>
 

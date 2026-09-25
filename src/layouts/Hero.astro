@@ -1,0 +1,9 @@
+---
+import { Image } from 'astro:assets';
+interface Props { src: string; short?: boolean; alt?: string }
+const { src, short = false, alt = '' } = Astro.props;
+---
+<section class={`hero${short ? ' short' : ''}`}>
+  <Image src={src} inferSize alt={alt} widths={[800, 1280, 1920, 2560]} sizes="100vw" loading="eager" fetchpriority="high" />
+  <div class="wrap"><slot /></div>
+</section>

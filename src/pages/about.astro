@@ -1,12 +1,13 @@
 ---
 import { render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import Hero from '../layouts/Hero.astro';
 import { getNotes } from '../lib/posts';
 const note = (await getNotes()).find((n) => n.slug === 'about-me')!;
 const { Content } = await render(note);
 ---
-<Base title="About" nav="about">
-  <header class="post-head"><h1>About</h1></header>
-  {note.data.image && <img class="cover" src={note.data.image} alt="" />}
+<Base title="About" nav="about" overlay>
+  <Hero slot="hero" short src={note.data.image!}><h1>About</h1></Hero>
+  <div class="body-top"></div>
   <div class="prose"><Content /></div>
 </Base>

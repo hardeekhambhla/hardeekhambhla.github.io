@@ -28,3 +28,5 @@ export const folders = (notes: Note[]) => {
 };
 
 export const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+
+export const HOME_BANNER = 'https://raw.githubusercontent.com/hardeekhambhla/blog-assets/refs/heads/main/home3.JPG';

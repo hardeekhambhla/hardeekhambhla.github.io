@@ -29,5 +29,6 @@ const flatHtml = {
 export default defineConfig({
   site: 'https://hardeekhambhla.github.io',
   integrations: [sitemap(), flatHtml],
+  image: { domains: ['raw.githubusercontent.com', 'github.com'] },
   redirects: { '/tags': '/', '/archives': '/' },
 });
