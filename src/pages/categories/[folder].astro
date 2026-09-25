@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import NoteRow from '../../layouts/NoteRow.astro';
+import FolderChips from '../../layouts/FolderChips.astro';
+import { getNotes, folders, cap } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return folders(notes).map(([folder]) => ({
+    params: { folder },
+    props: { notes: notes.filter((n) => n.data.categories.includes(folder)), all: notes },
+  }));
+}
+const { folder } = Astro.params;
+const { notes, all } = Astro.props;
+---
+<Base title={cap(folder!)} back={{ href: '/categories/', label: 'Folders' }} barTitle={cap(folder!)}>
+  <h1 class="large">{cap(folder!)}</h1>
+  <FolderChips folders={folders(all)} current={folder} />
+  <ul class="list">{notes.map((n) => <NoteRow note={n} />)}</ul>
+  <p class="count-foot">{notes.length} {notes.length === 1 ? 'Note' : 'Notes'}</p>
+</Base>

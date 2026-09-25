@@ -1,0 +1,8 @@
+---
+import { cap } from '../lib/posts';
+const { folders, current } = Astro.props as { folders: [string, number][]; current?: string };
+---
+<nav class="chips" aria-label="Folders">
+  <a href="/" aria-current={!current ? 'page' : undefined}>All Notes</a>
+  {folders.map(([f]) => <a href={`/categories/${f}/`} aria-current={current === f ? 'page' : undefined}>{cap(f)}</a>)}
+</nav>

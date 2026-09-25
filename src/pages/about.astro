@@ -1,0 +1,14 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { getNotes } from '../lib/posts';
+const note = (await getNotes()).find((n) => n.slug === 'about-me')!;
+const { Content } = await render(note);
+---
+<Base title="About" back={{ href: '/', label: 'Notes' }} barTitle="About">
+  <h1 class="large">About</h1>
+  <article class="note">
+    {note.data.image && <img class="cover" src={note.data.image} alt="" />}
+    <Content />
+  </article>
+</Base>

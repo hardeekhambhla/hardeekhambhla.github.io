@@ -1,0 +1,60 @@
+---
+import { render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { getNotes, fmtDate, cap } from '../lib/posts';
+
+export async function getStaticPaths() {
+  const notes = await getNotes();
+  return notes.map((note, i) => ({
+    params: { path: note.url.slice(1) },
+    props: { note, newer: notes[i - 1], older: notes[i + 1] },
+  }));
+}
+const { note, newer, older } = Astro.props;
+const { Content } = await render(note);
+const d = note.data;
+const back = d.categories[0]
+  ? { href: `/categories/${d.categories[0]}/`, label: cap(d.categories[0]) }
+  : { href: '/', label: 'Notes' };
+---
+<Base title={d.title} description={d.subtitle} image={d.image} back={back} barTitle={d.title}>
+  <article class="note">
+    <div class="stamp">{fmtDate(note.date)}</div>
+    <h1>{d.title}</h1>
+    {d.subtitle && <p class="sub">{d.subtitle}</p>}
+    {d.image && <img class="cover" src={d.image} alt="" />}
+    <Content />
+    {d.tags.length > 0 && <div class="tags">{d.tags.map((t) => <span>#{t}</span>)}</div>}
+  </article>
+
+  {(newer || older) && (
+    <ul class="list pn">
+      {newer && <li><a class="row" href={newer.url}><div class="body"><div class="meta">Newer</div><div class="name">{newer.data.title}</div></div></a></li>}
+      {older && <li><a class="row" href={older.url}><div class="body"><div class="meta">Older</div><div class="name">{older.data.title}</div></div></a></li>}
+    </ul>
+  )}
+
+  <div class="comments" id="comments"></div>
+
+  <dialog class="lightbox" id="lb"><img alt="" /></dialog>
+  <script is:inline>
+    const lb = document.getElementById('lb');
+    document.querySelectorAll('a.photo-swipe').forEach((a) =>
+      a.addEventListener('click', (e) => { e.preventDefault(); lb.querySelector('img').src = a.href; lb.showModal(); }));
+    lb.addEventListener('click', () => lb.close());
+
+    const dark = matchMedia('(prefers-color-scheme: dark)');
+    const s = document.createElement('script');
+    s.src = 'https://utteranc.es/client.js';
+    s.async = true; s.crossOrigin = 'anonymous';
+    s.setAttribute('repo', 'hardeekhambhla/hardeekhambhla.github.io');
+    s.setAttribute('issue-term', 'title');
+    s.setAttribute('label', 'utterances comment');
+    s.setAttribute('theme', dark.matches ? 'github-dark' : 'github-light');
+    document.getElementById('comments').appendChild(s);
+    dark.addEventListener('change', () => {
+      const f = document.querySelector('iframe.utterances-frame');
+      f && f.contentWindow.postMessage({ type: 'set-theme', theme: dark.matches ? 'github-dark' : 'github-light' }, 'https://utteranc.es');
+    });
+  </script>
+</Base>

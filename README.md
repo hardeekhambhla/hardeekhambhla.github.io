@@ -22,4 +22,16 @@ The export script writes Markdown files into the `artifacts/medium/` and `artifa
 
 ## Notes
 
-- The existing Jekyll build and GitHub Pages deployment workflow remain unchanged.
+- Site build and deploy: see Site section above.
+
+## Site
+
+Astro static site, iOS Notes style. Posts live in `_posts/` (Markdown, `YYYY-MM-DD-slug.md`); old Jekyll URLs are preserved.
+
+```bash
+npm install
+npm run dev      # local
+npm run build    # -> dist/
+```
+
+Deploys via GitHub Actions (`.github/workflows/deploy.yml`). In repo Settings → Pages, set Source to **GitHub Actions**.
