@@ -7,5 +7,5 @@ ALLOWED_ORIGINS = "https://hardeekhambhla.github.io,http://localhost:4321,http:/
 
 [[d1_databases]]
 binding = "DB"
-database_name = "comments"
+database_name = "blog-comments"
 database_id = "REPLACE_WITH_ID_FROM_wrangler_d1_create"

@@ -37,13 +37,13 @@ jobs:
         run: |
           npm ci
           # create the D1 database once, then wire its id into wrangler.toml
-          ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="comments") | .uuid')
+          ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="blog-comments") | .uuid')
           if [ -z "$ID" ]; then
-            npx wrangler d1 create comments
-            ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="comments") | .uuid')
+            npx wrangler d1 create blog-comments
+            ID=$(npx wrangler d1 list --json | jq -r '.[] | select(.name=="blog-comments") | .uuid')
           fi
           sed -i "s/REPLACE_WITH_ID_FROM_wrangler_d1_create/$ID/" wrangler.toml
-          npx wrangler d1 execute comments --remote --file=schema.sql
+          npx wrangler d1 execute blog-comments --remote --file=schema.sql
           npx wrangler deploy 2>&1 | tee out.txt
           echo "url=$(grep -oE 'https://[^ ]+\.workers\.dev' out.txt | head -1)" >> "$GITHUB_OUTPUT"
 
